@@ -5,6 +5,6 @@ public class Poliwhirl extends Poliwag {
 		super (name, level);
 		setStats (65, 65, 65, 50, 50, 90);
 		setType(Type.WATER);
-		//setMove (new Swagger());
+		setMove (new Swagger(), new Rest(), new WakeUpSlap());
 	}
 }

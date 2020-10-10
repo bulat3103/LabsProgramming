@@ -5,6 +5,6 @@ public class Furfrou extends Pokemon {
 		super(name, level);
 		setStats (75, 80, 60, 65, 90, 102);
 		setType(Type.NORMAL);
-		setMove ();
+		setMove (new Bite(), new DarkPulse(), new BabyDollEyes(), new Tackle());
 	}
 }
