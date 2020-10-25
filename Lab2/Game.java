@@ -1,3 +1,5 @@
+import pok.*;
+import attacks.*;
 import ru.ifmo.se.pokemon.*;
 
 public class Game {
