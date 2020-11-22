@@ -5,8 +5,6 @@ import interfaces.iFlyable;
 import materialObjects.Furniture;
 import materialObjects.Pit;
 
-import java.util.Objects;
-
 public class MainHero extends Human implements iFlyable {
     private double currentCoordinat = 0;
     private double speed;
@@ -46,30 +44,6 @@ public class MainHero extends Human implements iFlyable {
     @Override
     public void Say(String message) {
         System.out.println(message);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MainHero mainHero = (MainHero) o;
-        return Double.compare(mainHero.currentCoordinat, currentCoordinat) == 0 &&
-                Double.compare(mainHero.speed, speed) == 0 &&
-                pit.equals(mainHero.pit);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(currentCoordinat, speed, pit);
-    }
-
-    @Override
-    public String toString() {
-        return "characters.MainHero{" +
-                "currentCoordinat=" + currentCoordinat +
-                ", speed=" + speed +
-                ", pit=" + pit +
-                '}';
     }
 
     public void TryToSee(Direction dir) {

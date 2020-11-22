@@ -3,6 +3,8 @@ package characters;
 import enums.*;
 import interfaces.iHuman;
 
+import java.util.Objects;
+
 public abstract class Human implements iHuman {
     private String name;
     private int age;
@@ -22,5 +24,32 @@ public abstract class Human implements iHuman {
 
     public String getName() {
         return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Human) {
+            Human other = (Human) o;
+            return this.name.equals(other.name) && this.age == other.age && this.sex.equals(other.sex);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, sex);
+    }
+
+    public Sex getSex() {
+        return this.sex;
     }
 }

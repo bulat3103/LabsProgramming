@@ -1,5 +1,6 @@
 package materialObjects;
 
+import characters.Human;
 import enums.*;
 
 import java.util.Objects;
@@ -30,21 +31,16 @@ public class Furniture {
 
     @Override
     public String toString() {
-        return "materialObjects.Furniture{" +
-                "type=" + type +
-                ", dir=" + dir +
-                ", deepCoordinat=" + deepCoordinat +
-                '}';
+        return this.type.name();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Furniture furniture = (Furniture) o;
-        return deepCoordinat == furniture.deepCoordinat &&
-                type == furniture.type &&
-                dir == furniture.dir;
+        if (o instanceof Furniture) {
+            Furniture other = (Furniture) o;
+            return this.type.equals(other.type) && this.deepCoordinat == other.deepCoordinat && this.dir.equals(other.dir);
+        }
+        return false;
     }
 
     @Override

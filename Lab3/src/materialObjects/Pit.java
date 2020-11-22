@@ -7,14 +7,6 @@ public class Pit {
     private int deep;
     private ArrayList<Furniture> furn = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "materialObjects.Pit{" +
-                "deep=" + deep +
-                ", furn=" + furn +
-                '}';
-    }
-
     public Pit() {
         this.deep = 10;
     }
@@ -35,13 +27,19 @@ public class Pit {
         return this.furn;
     }
 
+
+    @Override
+    public String toString() {
+        return "Колодец с глубиной " + this.deep;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pit pit = (Pit) o;
-        return deep == pit.deep &&
-                furn.equals(pit.furn);
+        if (o instanceof Pit) {
+            Pit other = (Pit) o;
+            return this.deep == other.deep && this.furn.equals(other.furn);
+        }
+        return false;
     }
 
     @Override

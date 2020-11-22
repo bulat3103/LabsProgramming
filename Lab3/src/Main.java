@@ -4,7 +4,7 @@ import materialObjects.*;
 
 public class Main {
     public static void main(String[] args) {
-        Pit pit = new Pit(12); //создаем колодец глубиной 5 м
+        Pit pit = new Pit(12);
         MainHero Alice = new MainHero("Алиса", 20, Sex.GIRL, 1.0);
         Alice.setPit(pit);
         for (int i = 1; i <= pit.getDeep(); i++) {
