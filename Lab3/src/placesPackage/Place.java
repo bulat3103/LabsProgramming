@@ -7,7 +7,7 @@ public class Place extends APlace {
         super();
     }
 
-    public Place(Places typePLace, int deep) {
-        super(typePLace, deep);
+    public Place(Places typePlace, int deep) {
+        super(typePlace, deep);
     }
 }

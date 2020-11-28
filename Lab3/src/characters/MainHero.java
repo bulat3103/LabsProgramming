@@ -23,9 +23,9 @@ public class MainHero extends Human implements iFlyable {
     public void Fly() {
         this.currentCoordinat += this.speed;
         if (this.currentCoordinat >= this.place.getDeep()) {
-            System.out.println("Алиса достигла дна колодца и открыла волшебную дверь");
+            System.out.println("Алиса достигла дна " + place.getTypePlace().toString() + " и открыла волшебную дверь");
         } else {
-            System.out.println(super.getName() + " летит со скоростью " + this.speed + " м/с. Место: колодец");
+            System.out.println(super.getName() + " летит со скоростью " + this.speed + " м/с. Место: " + place.getTypePlace().toString());
             System.out.println("Текущая координата: " + this.currentCoordinat);
         }
     }
