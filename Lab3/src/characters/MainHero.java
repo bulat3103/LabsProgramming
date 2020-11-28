@@ -41,6 +41,7 @@ public class MainHero extends Human implements iFlyable {
         System.out.println(message);
     }
 
+    @Override
     public void Identificate(Direction dir) {
         if (this.speed > 5.0) Say("Слишком большая скорость. Ничего не могу разглядеть");
         if (this.currentCoordinat >= this.place.getDeep()) return;

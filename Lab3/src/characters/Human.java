@@ -23,6 +23,8 @@ public abstract class Human implements iHuman {
         this.sex = sex;
     }
 
+    public abstract void Identificate(Direction dir);
+
     public String getName() {
         return this.name;
     }
