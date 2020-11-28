@@ -1,6 +1,5 @@
 package materialObjects;
 
-import characters.Human;
 import enums.*;
 
 import java.util.Objects;

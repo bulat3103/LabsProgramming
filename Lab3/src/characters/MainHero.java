@@ -1,33 +1,28 @@
 package characters;
 
 import enums.*;
+import interfaces.IdentificationStrategy;
 import interfaces.iFlyable;
 import materialObjects.Furniture;
-import materialObjects.Pit;
+import placesPackage.APlace;
 
 public class MainHero extends Human implements iFlyable {
     private double currentCoordinat = 0;
     private double speed;
-    private Pit pit;
+    private APlace place;
+    private IdentificationStrategy IStrategy;
 
-    public MainHero() {
-        super();
-        this.speed = 1;
-    }
-
-    public MainHero(String name, int age, Sex sex, double speed) {
+    public MainHero(String name, int age, Sex sex, double speed, APlace place, IdentificationStrategy IStrategy) {
         super(name, age, sex);
         this.speed = speed;
-    }
-
-    public void setPit(Pit pit) {
-        this.pit = pit;
+        this.place = place;
+        this.IStrategy = IStrategy;
     }
 
     @Override
     public void Fly() {
         this.currentCoordinat += this.speed;
-        if (this.currentCoordinat >= this.pit.getDeep()) {
+        if (this.currentCoordinat >= this.place.getDeep()) {
             System.out.println("Алиса достигла дна колодца и открыла волшебную дверь");
         } else {
             System.out.println(super.getName() + " летит со скоростью " + this.speed + " м/с. Место: колодец");
@@ -37,7 +32,7 @@ public class MainHero extends Human implements iFlyable {
 
     @Override
     public void Look(Direction dir) {
-        if (this.currentCoordinat < this.pit.getDeep())
+        if (this.currentCoordinat < this.place.getDeep())
         System.out.println(super.getName() + " посмотрела " + dir.toString());
     }
 
@@ -46,31 +41,10 @@ public class MainHero extends Human implements iFlyable {
         System.out.println(message);
     }
 
-    public void TryToSee(Direction dir) {
-        if (this.currentCoordinat >= this.pit.getDeep()) return;
-        if (dir == Direction.DOWN) {
-            if (this.currentCoordinat < this.pit.getDeep() - 3) {
-                Say("Ничего не видно, слишком темно");
-            } else {
-                Say("Я увидела волшебную дверь. Урааа!!!");
-            }
-            return;
-        }
-        if (dir == Direction.UP) {
-            Say("Я вижу выход, но не тот :)");
-            return;
-        }
-        if (this.speed > 5.0) {
-            Say("Слишком большая скорость, ничего не могу разглядеть.");
-            return;
-        }
-        String message = "Я ничего не вижу, там ничего нет.";
-        for (Furniture e : this.pit.getFurn()) {
-            if (e.getDir().toString().equals(dir.toString()) && e.getDeepCoordinat() == (int) this.currentCoordinat) {
-                message = "Я вижу " + e.getType().toString();
-            }
-        }
-        Say(message);
+    public void Identificate(Direction dir) {
+        if (this.speed > 5.0) Say("Слишком большая скорость. Ничего не могу разглядеть");
+        if (this.currentCoordinat >= this.place.getDeep()) return;
+        Say(IStrategy.Identificate(dir, this.place.getFurn(), this.currentCoordinat));
     }
 
     public double getCurrentCoordinat() {
@@ -79,5 +53,9 @@ public class MainHero extends Human implements iFlyable {
 
     public double getSpeed() {
         return this.speed;
+    }
+
+    public void setIStrategy(IdentificationStrategy iStrategy) {
+        this.IStrategy = iStrategy;
     }
 }

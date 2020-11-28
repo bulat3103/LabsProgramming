@@ -1,6 +1,7 @@
 package characters;
 
 import enums.*;
+import interfaces.IdentificationStrategy;
 import interfaces.iHuman;
 
 import java.util.Objects;
