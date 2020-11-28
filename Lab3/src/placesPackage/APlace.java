@@ -9,7 +9,7 @@ import java.util.Objects;
 public abstract class APlace {
     private Places typePlace;
     private int deep;
-    private ArrayList<Furniture> furn = new ArrayList<>();
+    protected ArrayList<Furniture> furn = new ArrayList<>();
 
     public APlace() {
         this.typePlace = Places.PIT;
@@ -33,9 +33,7 @@ public abstract class APlace {
         return this.typePlace;
     }
 
-    public void addFurn(Furniture f) {
-        furn.add(f);
-    }
+    public abstract void addFurn(Furniture f);
 
     @Override
     public boolean equals(Object o) {
