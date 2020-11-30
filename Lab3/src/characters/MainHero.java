@@ -6,6 +6,8 @@ import interfaces.iFlyable;
 import materialObjects.Furniture;
 import placesPackage.APlace;
 
+import java.util.Objects;
+
 public class MainHero extends Human implements iFlyable {
     private double currentCoordinat = 0;
     private double speed;
@@ -58,5 +60,27 @@ public class MainHero extends Human implements iFlyable {
 
     public void setIStrategy(IdentificationStrategy iStrategy) {
         this.IStrategy = iStrategy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MainHero other = (MainHero) o;
+        return Double.compare(other.currentCoordinat, currentCoordinat) == 0 &&
+                Double.compare(other.speed, speed) == 0 &&
+                Objects.equals(place, other.place) &&
+                Objects.equals(IStrategy, other.IStrategy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), currentCoordinat, speed, place, IStrategy);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

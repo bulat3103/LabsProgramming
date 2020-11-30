@@ -7,9 +7,9 @@ import interfaces.iHuman;
 import java.util.Objects;
 
 public abstract class Human implements iHuman {
-    private String name;
-    private int age;
-    private Sex sex;
+    protected String name;
+    protected int age;
+    protected Sex sex;
 
     public Human() {
         this.name = "Неизвестный";
@@ -40,11 +40,12 @@ public abstract class Human implements iHuman {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Human) {
-            Human other = (Human) o;
-            return this.name.equals(other.name) && this.age == other.age && this.sex.equals(other.sex);
-        }
-        return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return age == human.age &&
+                Objects.equals(name, human.name) &&
+                sex == human.sex;
     }
 
     @Override

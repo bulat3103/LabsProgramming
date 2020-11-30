@@ -35,11 +35,12 @@ public class Furniture {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Furniture) {
-            Furniture other = (Furniture) o;
-            return this.type.equals(other.type) && this.deepCoordinat == other.deepCoordinat && this.dir.equals(other.dir);
-        }
-        return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Furniture furniture = (Furniture) o;
+        return deepCoordinat == furniture.deepCoordinat &&
+                type == furniture.type &&
+                dir == furniture.dir;
     }
 
     @Override
