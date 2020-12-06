@@ -6,19 +6,18 @@ import interfaces.iFlyable;
 import materialObjects.Furniture;
 import placesPackage.APlace;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainHero extends Human implements iFlyable {
     private double currentCoordinat = 0;
     private double speed;
     private APlace place;
-    private IdentificationStrategy IStrategy;
 
     public MainHero(String name, int age, Sex sex, double speed, APlace place, IdentificationStrategy IStrategy) {
-        super(name, age, sex);
+        super(name, age, sex, IStrategy);
         this.speed = speed;
         this.place = place;
-        this.IStrategy = IStrategy;
     }
 
     @Override
@@ -38,16 +37,10 @@ public class MainHero extends Human implements iFlyable {
         System.out.println(super.getName() + " посмотрела " + dir.toString());
     }
 
-    @Override
-    public void Say(String message) {
-        System.out.println(message);
-    }
 
     @Override
-    public void Identificate(Direction dir) {
-        if (this.speed > 5.0) Say("Слишком большая скорость. Ничего не могу разглядеть");
-        if (this.currentCoordinat >= this.place.getDeep()) return;
-        Say(IStrategy.Identificate(dir, this.place.getFurn(), this.currentCoordinat));
+    public ArrayList<Furniture> Identificate(Direction dir) {
+        return IStrategy.Identificate(dir, place, this.currentCoordinat);
     }
 
     public double getCurrentCoordinat() {
@@ -56,10 +49,6 @@ public class MainHero extends Human implements iFlyable {
 
     public double getSpeed() {
         return this.speed;
-    }
-
-    public void setIStrategy(IdentificationStrategy iStrategy) {
-        this.IStrategy = iStrategy;
     }
 
     @Override
@@ -77,10 +66,5 @@ public class MainHero extends Human implements iFlyable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), currentCoordinat, speed, place, IStrategy);
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

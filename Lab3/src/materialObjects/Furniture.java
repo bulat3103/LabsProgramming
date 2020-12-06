@@ -39,8 +39,8 @@ public class Furniture {
         if (o == null || getClass() != o.getClass()) return false;
         Furniture furniture = (Furniture) o;
         return deepCoordinat == furniture.deepCoordinat &&
-                type == furniture.type &&
-                dir == furniture.dir;
+                type.equals(furniture.type) &&
+                dir.equals(furniture.dir);
     }
 
     @Override

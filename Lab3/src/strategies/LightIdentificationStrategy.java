@@ -3,25 +3,28 @@ package strategies;
 import enums.Direction;
 import interfaces.IdentificationStrategy;
 import materialObjects.Furniture;
+import placesPackage.APlace;
 
 import java.util.ArrayList;
 
 public class LightIdentificationStrategy implements IdentificationStrategy {
 
     @Override
-    public String Identificate(Direction dir, ArrayList<Furniture> furn, double currentCoordinat) {
+    public ArrayList<Furniture> Identificate(Direction dir, APlace place, double currentCoordinat) {
+        ArrayList<Furniture> seen = new ArrayList<>();
         if (dir == Direction.UP) {
-            return "Я вижу выход, но не тот :)";
+            System.out.println("Я вижу выход, но не тот :)");
+            return seen;
         }
         if (dir == Direction.DOWN) {
-            return "Я вижу волшебную дверь. Скорее бы долететь!!!";
+            System.out.println("Я вижу волшебную дверь. Скорее бы долететь!!!");
+            return seen;
         }
-        String message = "Я ничего не вижу, там ничего нет.";
-        for (Furniture e : furn) {
+        for (Furniture e : place.getFurn()) {
             if (e.getDir().toString().equals(dir.toString()) && e.getDeepCoordinat() == (int) currentCoordinat) {
-                message = "Я вижу " + e.getType().toString();
+                seen.add(e);
             }
         }
-        return message;
+        return seen;
     }
 }

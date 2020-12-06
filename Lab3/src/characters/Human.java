@@ -3,13 +3,16 @@ package characters;
 import enums.*;
 import interfaces.IdentificationStrategy;
 import interfaces.iHuman;
+import materialObjects.Furniture;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Human implements iHuman {
     protected String name;
     protected int age;
     protected Sex sex;
+    protected IdentificationStrategy IStrategy;
 
     public Human() {
         this.name = "Неизвестный";
@@ -17,13 +20,14 @@ public abstract class Human implements iHuman {
         this.sex = Sex.BOY;
     }
 
-    public Human(String name, int age, Sex sex) {
+    public Human(String name, int age, Sex sex, IdentificationStrategy IStrategy) {
         this.name = name;
         this.age = age;
         this.sex = sex;
+        this.IStrategy = IStrategy;
     }
 
-    public abstract void Identificate(Direction dir);
+    public abstract ArrayList<Furniture> Identificate(Direction dir);
 
     public String getName() {
         return this.name;
@@ -31,6 +35,10 @@ public abstract class Human implements iHuman {
 
     public int getAge() {
         return this.age;
+    }
+
+    public void setIStrategy(IdentificationStrategy iStrategy) {
+        this.IStrategy = iStrategy;
     }
 
     @Override

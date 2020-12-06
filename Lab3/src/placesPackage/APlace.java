@@ -41,7 +41,7 @@ public abstract class APlace {
         if (o == null || getClass() != o.getClass()) return false;
         APlace aPlace = (APlace) o;
         return deep == aPlace.deep &&
-                typePlace == aPlace.typePlace &&
+                typePlace.equals(aPlace.typePlace) &&
                 Objects.equals(furn, aPlace.furn);
     }
 

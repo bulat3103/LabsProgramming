@@ -2,9 +2,10 @@ package interfaces;
 
 import enums.Direction;
 import materialObjects.Furniture;
+import placesPackage.APlace;
 
 import java.util.ArrayList;
 
 public interface IdentificationStrategy {
-    String Identificate(Direction dir, ArrayList<Furniture> furn, double currentCoordinat);
+    ArrayList<Furniture> Identificate(Direction dir, APlace place, double currentCoordinat);
 }
